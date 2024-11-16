@@ -1,11 +1,11 @@
 {
-  "name": "cross-inpage-provider-core",
-  "version": "2.0.1",
+  "name": "@chargerwallet/cross-inpage-provider-core",
+  "version": "2.0.2",
   "keywords": [
     "cross-inpage-provider-core"
   ],
   "author": "dev@chargerwallet.com",
-  "repository": "https://github.com/chargerwallet/cross-inpage-provider-core",
+  "repository": "https://github.com/chargerwallet/@chargerwallet/cross-inpage-provider-core",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
@@ -29,9 +29,9 @@
     "build-version-info": "node ./scripts/buildVersionInfo.js"
   },
   "dependencies": {
-    "cross-inpage-provider-errors": "^2.0.0",
-    "cross-inpage-provider-events": "^2.0.0",
-    "cross-inpage-provider-types": "^2.0.0",
+    "@chargerwallet/cross-inpage-provider-errors": "^2.0.0",
+    "@chargerwallet/cross-inpage-provider-events": "^2.0.0",
+    "@chargerwallet/cross-inpage-provider-types": "^2.0.0",
     "events": "^3.3.0",
     "lodash-es": "^4.17.21",
     "ms": "^2.1.3"

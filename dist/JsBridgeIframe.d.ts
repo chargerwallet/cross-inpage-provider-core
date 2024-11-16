@@ -1,4 +1,4 @@
-import { IJsBridgeConfig, IJsBridgeMessagePayload, IPostMessageEventData, IOptionsWithDebugLogger } from 'cross-inpage-provider-types';
+import { IJsBridgeConfig, IJsBridgeMessagePayload, IPostMessageEventData, IOptionsWithDebugLogger } from '@chargerwallet/cross-inpage-provider-types';
 import { JsBridgeBase } from './JsBridgeBase';
 export type ISetupPostMessageListenerOptions = IOptionsWithDebugLogger & {
     bridge?: JsBridgeIframe;

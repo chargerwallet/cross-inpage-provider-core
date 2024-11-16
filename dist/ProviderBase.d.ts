@@ -1,6 +1,6 @@
 import { CrossEventEmitter } from './CrossEventEmitter';
 import { JsBridgeBase } from './JsBridgeBase';
-import { IInjectedProviderNamesStrings, IJsonRpcResponse, ConsoleLike, IDebugLogger } from 'cross-inpage-provider-types';
+import { IInjectedProviderNamesStrings, IJsonRpcResponse, ConsoleLike, IDebugLogger } from '@chargerwallet/cross-inpage-provider-types';
 export type IBridgeRequestCallback = (error: Error | null, result?: IJsonRpcResponse<unknown>) => void;
 export type IInpageProviderConfig = {
     bridge?: JsBridgeBase;

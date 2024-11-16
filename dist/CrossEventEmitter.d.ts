@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import EventEmitterBase from 'cross-inpage-provider-events';
+import EventEmitterBase from '@chargerwallet/cross-inpage-provider-events';
 import type { EventEmitter as INodeEventEmitter } from 'events';
 declare class EventEmitterProxy extends EventEmitterBase implements INodeEventEmitter {
     emit(eventName: string | symbol, ...args: any[]): boolean;

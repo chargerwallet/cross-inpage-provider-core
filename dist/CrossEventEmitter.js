@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access,@typescript-eslint/ban-ts-comment,  @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
  */
 // @ts-ignore
-import EventEmitterBase from 'cross-inpage-provider-events';
+import EventEmitterBase from '@chargerwallet/cross-inpage-provider-events';
 function safeApply(handler, context, args) {
     try {
         Reflect.apply(handler, context, args);

@@ -1,4 +1,4 @@
-import { IJsBridgeMessagePayload } from 'cross-inpage-provider-types';
+import { IJsBridgeMessagePayload } from '@chargerwallet/cross-inpage-provider-types';
 import { JsBridgeBase } from './JsBridgeBase';
 declare class JsBridgeSimple extends JsBridgeBase {
     sendAsString: boolean;

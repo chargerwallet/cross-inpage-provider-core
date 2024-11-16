@@ -7,7 +7,7 @@ exports.CrossEventEmitter = void 0;
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access,@typescript-eslint/ban-ts-comment,  @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
  */
 // @ts-ignore
-const cross_inpage_provider_events_1 = __importDefault(require("cross-inpage-provider-events"));
+const cross_inpage_provider_events_1 = __importDefault(require("@chargerwallet/cross-inpage-provider-events"));
 function safeApply(handler, context, args) {
     try {
         Reflect.apply(handler, context, args);

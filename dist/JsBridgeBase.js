@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { isPlainObject, isString } from 'lodash-es';
 import { CrossEventEmitter } from './CrossEventEmitter';
 import { appDebugLogger, consoleErrorInDev } from './loggers';
-import { web3Errors } from 'cross-inpage-provider-errors';
-import { IJsBridgeMessageTypes, } from 'cross-inpage-provider-types';
+import { web3Errors } from '@chargerwallet/cross-inpage-provider-errors';
+import { IJsBridgeMessageTypes, } from '@chargerwallet/cross-inpage-provider-types';
 import versionInfo from './versionInfo';
 function toPlainError(errorInfo) {
     return {

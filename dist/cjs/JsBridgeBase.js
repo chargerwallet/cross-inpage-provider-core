@@ -17,8 +17,8 @@ exports.isLegacyExtMessage = exports.JsBridgeBase = void 0;
 const lodash_es_1 = require("lodash-es");
 const CrossEventEmitter_1 = require("./CrossEventEmitter");
 const loggers_1 = require("./loggers");
-const cross_inpage_provider_errors_1 = require("cross-inpage-provider-errors");
-const cross_inpage_provider_types_1 = require("cross-inpage-provider-types");
+const cross_inpage_provider_errors_1 = require("@chargerwallet/cross-inpage-provider-errors");
+const cross_inpage_provider_types_1 = require("@chargerwallet/cross-inpage-provider-types");
 const versionInfo_1 = __importDefault(require("./versionInfo"));
 function toPlainError(errorInfo) {
     return {

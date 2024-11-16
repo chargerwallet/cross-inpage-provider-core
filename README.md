@@ -1,1 +1,1 @@
-# cross-inpage-provider
+# cross-inpage-provider-core
