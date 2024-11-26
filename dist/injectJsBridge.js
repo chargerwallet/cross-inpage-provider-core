@@ -13,11 +13,11 @@ function injectJsBridge(bridgeCreator) {
     //  make cloudfare dead loop and make zhihu.com search functionally down
     // fixGlobalShim();
     var _a;
-    if (!((_a = window === null || window === void 0 ? void 0 : window.$chargerwallet) === null || _a === void 0 ? void 0 : _a.jsBridge)) {
-        window.$chargerwallet = window.$chargerwallet || {};
-        window.$chargerwallet.jsBridge = bridgeCreator();
+    if (!((_a = window === null || window === void 0 ? void 0 : window.$onekey) === null || _a === void 0 ? void 0 : _a.jsBridge)) {
+        window.$onekey = window.$onekey || {};
+        window.$onekey.jsBridge = bridgeCreator();
         commonLogger.debug('JsBridge injected success!', performance.now());
     }
-    return window.$chargerwallet.jsBridge;
+    return window.$onekey.jsBridge;
 }
 export { injectJsBridge };

@@ -1,5 +1,5 @@
 import { CrossEventEmitter } from './CrossEventEmitter';
-import { IDebugLogger, IInjectedProviderNamesStrings, IJsBridgeConfig, IJsBridgeMessagePayload, IJsonRpcResponse } from '@chargerwallet/cross-inpage-provider-types';
+import { IDebugLogger, IInjectedProviderNamesStrings, IJsBridgeConfig, IJsBridgeMessagePayload, IJsonRpcResponse } from '@onekeyfe/cross-inpage-provider-types';
 declare function isLegacyExtMessage(payload: unknown): boolean;
 declare abstract class JsBridgeBase extends CrossEventEmitter {
     constructor(config?: IJsBridgeConfig);

@@ -15,18 +15,19 @@ export var ISpecialPropertyProviderNamesReflection;
     ISpecialPropertyProviderNamesReflection["sui"] = "suiWallet";
     ISpecialPropertyProviderNamesReflection["polkadot"] = "polkadot-js";
 })(ISpecialPropertyProviderNamesReflection || (ISpecialPropertyProviderNamesReflection = {}));
-export const DEFINE_PROPERTY_WHITELIST = [
+export var DEFINE_PROPERTY_WHITELIST = [
     'connectionStatus', // base provider
 ];
 export function checkPlatformEnable(disablePlatform) {
     var _a, _b, _c, _d;
-    const walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
-    const walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
+    var walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
+    var walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
     if (!walletInfoLocal) {
         return true;
     }
     if (disablePlatform) {
-        for (const platform of disablePlatform) {
+        for (var _i = 0, disablePlatform_1 = disablePlatform; _i < disablePlatform_1.length; _i++) {
+            var platform = disablePlatform_1[_i];
             if (platform === 'web' && ((_a = walletInfoLocal === null || walletInfoLocal === void 0 ? void 0 : walletInfoLocal.platformEnv) === null || _a === void 0 ? void 0 : _a.isWeb)) {
                 return false;
             }
@@ -45,19 +46,19 @@ export function checkPlatformEnable(disablePlatform) {
 }
 export function checkWalletSwitchEnable() {
     try {
-        const walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
-        const walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
+        var walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
+        var walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
         if (!walletInfoLocal) {
             return true;
         }
         if (!(walletInfoLocal === null || walletInfoLocal === void 0 ? void 0 : walletInfoLocal.isDefaultWallet)) {
             if (process.env.NODE_ENV !== 'production') {
-                console.log('ChargerWallet is not default wallet');
+                console.log('OneKey is not default wallet');
             }
             return false;
         }
         if (Array.isArray(walletInfoLocal === null || walletInfoLocal === void 0 ? void 0 : walletInfoLocal.excludedDappList)) {
-            const currentOrigin = window.location.origin;
+            var currentOrigin = window.location.origin;
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             if (walletInfoLocal.excludedDappList.includes(currentOrigin)) {
                 if (process.env.NODE_ENV !== 'production') {
@@ -74,11 +75,11 @@ export function checkWalletSwitchEnable() {
     return true;
 }
 export function checkEnableDefineProperty(property) {
-    if (property === '$chargerwallet')
+    if (property === '$onekey')
         return false;
     try {
-        const walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
-        const walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
+        var walletInfoLocalStr = localStorage.getItem(WALLET_INFO_LOACAL_KEY_V5);
+        var walletInfoLocal = walletInfoLocalStr ? JSON.parse(walletInfoLocalStr) : null;
         return !!(walletInfoLocal === null || walletInfoLocal === void 0 ? void 0 : walletInfoLocal.platformEnv.isExtension);
     }
     catch (e) {
@@ -94,9 +95,9 @@ export function defineWindowProperty(property, provider, options) {
         if (!checkWalletSwitchEnable())
             return;
     }
-    const enable = checkEnableDefineProperty(property);
-    const proxyProvider = new Proxy(provider, {
-        defineProperty(target, property, attributes) {
+    var enable = checkEnableDefineProperty(property);
+    var proxyProvider = new Proxy(provider, {
+        defineProperty: function (target, property, attributes) {
             try {
                 if (DEFINE_PROPERTY_WHITELIST.includes(property)) {
                     return Reflect.defineProperty(target, property, attributes);
@@ -110,17 +111,17 @@ export function defineWindowProperty(property, provider, options) {
     });
     try {
         if (enable) {
-            Object.keys(provider).forEach((key) => {
+            Object.keys(provider).forEach(function (key) {
                 var _a;
                 ((_a = window[property]) !== null && _a !== void 0 ? _a : {})[key] = proxyProvider[key];
             });
             Object.defineProperty(window, property, {
-                enumerable: (_a = options === null || options === void 0 ? void 0 : options.enumerable) !== null && _a !== void 0 ? _a : false,
-                configurable: false,
-                get() {
+                enumerable: (_a = options === null || options === void 0 ? void 0 : options.enumerable) !== null && _a !== void 0 ? _a : false, // Object.keys loop check inject
+                configurable: false, // prevent redefined
+                get: function () {
                     return proxyProvider;
                 },
-                set(val) {
+                set: function (val) {
                     // skip set
                 },
             });

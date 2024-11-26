@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconDismiss } from './icon';
-class Notification {
-    constructor(settings) {
+var Notification = /** @class */ (function () {
+    function Notification(settings) {
         this.settings = settings;
         this.element = document.createElement("div");
-        this.element.className = `chargerwallet-alert-message ${this.settings.customClass ? this.settings.customClass : ""}`;
+        this.element.className = "onekey-alert-message ".concat(this.settings.customClass ? this.settings.customClass : "");
         // initialize event handlers
         this.eventHandlers = {};
         // add inner content
@@ -16,145 +16,72 @@ class Notification {
         // mouse interaction events
         this.bindEvents();
     }
-    insert() {
+    Notification.prototype.insert = function () {
         var _a;
         if (!this.element) {
             return;
         }
         // content container
-        const contentContainer = document.createElement("div");
-        contentContainer.className = "chargerwallet-alert-message-body";
+        var contentContainer = document.createElement("div");
+        contentContainer.className = "onekey-alert-message-body";
         contentContainer.innerHTML = this.settings.content;
         (_a = this.element) === null || _a === void 0 ? void 0 : _a.appendChild(contentContainer);
         // dismiss button
         if (this.settings.dismissible) {
             this.dismissButton = document.createElement("div");
-            this.dismissButton.className = "chargerwallet-alert-message-dismiss";
-            const dismissIcon = document.createElement("img");
+            this.dismissButton.className = "onekey-alert-message-dismiss";
+            var dismissIcon = document.createElement("img");
             dismissIcon.setAttribute("src", IconDismiss);
-            dismissIcon.className = "chargerwallet-alert-close-icon";
+            dismissIcon.className = "onekey-alert-close-icon";
             this.dismissButton.appendChild(dismissIcon);
             this.element.appendChild(this.dismissButton);
         }
         this.settings.hostElement.appendChild(this.element);
-    }
-    bindEvents() {
+    };
+    Notification.prototype.bindEvents = function () {
+        var _this = this;
         var _a;
-        this.eventHandlers.dismiss = () => this.dismiss();
+        this.eventHandlers.dismiss = function () { return _this.dismiss(); };
         (_a = this.dismissButton) === null || _a === void 0 ? void 0 : _a.addEventListener("click", this.eventHandlers.dismiss, false);
-    }
-    initiateTimer(duration = this.settings.duration) {
-        this.dismissalTimer = setTimeout(() => {
-            this.dismiss();
+    };
+    Notification.prototype.initiateTimer = function (duration) {
+        var _this = this;
+        if (duration === void 0) { duration = this.settings.duration; }
+        this.dismissalTimer = setTimeout(function () {
+            _this.dismiss();
         }, duration);
-    }
-    cancelTimer() {
+    };
+    Notification.prototype.cancelTimer = function () {
         if (this.dismissalTimer) {
             clearTimeout(this.dismissalTimer);
             this.dismissalTimer = null;
         }
-    }
-    dismiss() {
+    };
+    Notification.prototype.dismiss = function () {
         if (!this.element) {
             return;
         }
-        this.element.classList.add(".chargerwallet-alert-message-hidden");
+        this.element.classList.add(".onekey-alert-message-hidden");
         this.settings.hostElement.removeChild(this.element);
         this.element = null;
         if (this.settings.onDismiss) {
             this.settings.onDismiss();
         }
         this.cancelTimer();
-    }
-}
-let container = null;
-let style = null;
-const styles = `
-    .chargerwallet-alert-container {
-      position: fixed;
-      z-index: 99999;
-      top: 60px;
-      right: 42px;
-    }
-    .chargerwallet-alert-message {
-      min-width: 230px;
-      min-height: 44px;
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-sizing: border-box;
-      box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.10);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-
-      font-family: 'Arial', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 19px;
-      color: rgba(0, 0, 0, 0.88);
-
-      padding: 16px;
-      gap: 8px;
-
-      opacity: 1;
-    }
-    .chargerwallet-alert-message + .chargerwallet-alert-message {
-      margin-top: 30px;
-    }
-    .chargerwallet-alert-message-body {
-      display: flex;
-      align-items: center;
-      color: #13141A;
-    }
-    .chargerwallet-alert-message-hidden {
-      opacity: 0;
-      transition: 0.3s;
-    }
-
-    .chargerwallet-alert-message-dismiss {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-    }
-    .chargerwallet-alert-close-icon-close {
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-    }
-    .chargerwallet-strong {
-      font-weight: bold;
-      color: #13141A;
-    }
-    .chargerwallet-alert-default-wallet {
-      border-radius: 8px;
-      height: 71px;
-
-      font-size: 12px;
-      line-height: 16px;
-      color: #13141A;
-    }
-
-    .chargerwallet-alert-network-changed {
-      border-radius: 8px;
-      height: 71px;
-
-      font-size: 12px;
-      line-height: 16px;
-      color: #13141A;
-    }
-  `;
+    };
+    return Notification;
+}());
+var container = null;
+var style = null;
+var styles = "\n    .onekey-alert-container {\n      position: fixed;\n      z-index: 99999;\n      top: 60px;\n      right: 42px;\n    }\n    .onekey-alert-message {\n      min-width: 230px;\n      min-height: 44px;\n      background: #FFFFFF;\n      border: 1px solid rgba(0, 0, 0, 0.08);\n      box-sizing: border-box;\n      box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.10);\n      border-radius: 8px;\n      display: flex;\n      align-items: center;\n\n      font-family: 'Arial', sans-serif;\n      font-style: normal;\n      font-weight: 500;\n      font-size: 13px;\n      line-height: 19px;\n      color: rgba(0, 0, 0, 0.88);\n\n      padding: 16px;\n      gap: 8px;\n\n      opacity: 1;\n    }\n    .onekey-alert-message + .onekey-alert-message {\n      margin-top: 30px;\n    }\n    .onekey-alert-message-body {\n      display: flex;\n      align-items: center;\n      color: #13141A;\n    }\n    .onekey-alert-message-hidden {\n      opacity: 0;\n      transition: 0.3s;\n    }\n\n    .onekey-alert-message-dismiss {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      width: 32px;\n      height: 32px;\n      cursor: pointer;\n    }\n    .onekey-alert-close-icon-close {\n      flex-shrink: 0;\n      width: 24px;\n      height: 24px;\n    }\n    .onekey-strong {\n      font-weight: bold;\n      color: #13141A;\n    }\n    .onekey-alert-default-wallet {\n      border-radius: 8px;\n      height: 71px;\n\n      font-size: 12px;\n      line-height: 16px;\n      color: #13141A;\n    }\n\n    .onekey-alert-network-changed {\n      border-radius: 8px;\n      height: 71px;\n\n      font-size: 12px;\n      line-height: 16px;\n      color: #13141A;\n    }\n  ";
 function notification(options) {
-    const { content = "", duration = 0, triggerElement = "×", customClass = "", dismissible = false, } = options || {};
+    var _a = options || {}, _b = _a.content, content = _b === void 0 ? "" : _b, _c = _a.duration, duration = _c === void 0 ? 0 : _c, _d = _a.triggerElement, triggerElement = _d === void 0 ? "×" : _d, _e = _a.customClass, customClass = _e === void 0 ? "" : _e, _f = _a.dismissible, dismissible = _f === void 0 ? false : _f;
     if (!container) {
-        const hostElement = document.createElement('div');
-        hostElement.id = 'chargerwallet-notification-center';
-        const shadowRoot = hostElement.attachShadow({ mode: 'open' });
+        var hostElement = document.createElement('div');
+        hostElement.id = 'onekey-notification-center';
+        var shadowRoot = hostElement.attachShadow({ mode: 'open' });
         container = document.createElement("div");
-        container.classList.add("chargerwallet-alert-container");
+        container.classList.add("onekey-alert-container");
         style = document.createElement("style");
         style.innerHTML = styles;
         shadowRoot.appendChild(style);
@@ -162,15 +89,15 @@ function notification(options) {
         document.body.appendChild(hostElement);
     }
     return new Notification({
-        content,
-        duration,
-        triggerElement,
+        content: content,
+        duration: duration,
+        triggerElement: triggerElement,
         hostElement: container,
-        customClass,
-        dismissible,
-        onDismiss: () => {
+        customClass: customClass,
+        dismissible: dismissible,
+        onDismiss: function () {
             if (container && !(container === null || container === void 0 ? void 0 : container.hasChildNodes())) {
-                const rootNode = container.getRootNode();
+                var rootNode = container.getRootNode();
                 if (rootNode instanceof ShadowRoot) {
                     document.body.removeChild(rootNode.host);
                 }
@@ -184,10 +111,10 @@ function notification(options) {
     });
 }
 export default notification;
-const isInIframe = () => {
+var isInIframe = function () {
     return window.self !== window.top;
 };
-export const isInSameOriginIframe = () => {
+export var isInSameOriginIframe = function () {
     var _a, _b;
     if (!isInIframe()) {
         return false;

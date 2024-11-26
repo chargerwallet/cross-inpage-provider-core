@@ -1,6 +1,6 @@
 import { CrossEventEmitter } from './CrossEventEmitter';
 import { JsBridgeBase } from './JsBridgeBase';
-import { IInjectedProviderNamesStrings, IJsonRpcResponse, ConsoleLike, IDebugLogger } from '@chargerwallet/cross-inpage-provider-types';
+import { IInjectedProviderNamesStrings, IJsonRpcResponse, ConsoleLike, IDebugLogger } from '@onekeyfe/cross-inpage-provider-types';
 export type IBridgeRequestCallback = (error: Error | null, result?: IJsonRpcResponse<unknown>) => void;
 export type IInpageProviderConfig = {
     bridge?: JsBridgeBase;
@@ -24,10 +24,10 @@ declare abstract class ProviderBase extends CrossEventEmitter {
     constructor(config: IInpageProviderConfig);
     configDebugLogger(config: DebugLoggerConfig): void;
     getConnectWalletInfo({ timeout }?: {
-        timeout?: number | undefined;
+        timeout?: number;
     }): Promise<ConnectWalletInfo | null>;
     version: string;
-    isChargerWallet: boolean;
+    isOneKey: boolean;
     protected abstract providerName: IInjectedProviderNamesStrings;
     protected readonly config: IInpageProviderConfig;
     readonly bridge: JsBridgeBase;

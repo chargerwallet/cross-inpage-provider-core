@@ -1,23 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-function createCodeWithScriptTag({ code }) {
+function createCodeWithScriptTag(_a) {
+    var code = _a.code;
     // script id check, only inject once.
-    return `
-    (function(){
-      const s = document.createElement('script');
-      s.setAttribute('async', 'false');
-      s.setAttribute('data-chargerwallet-injected', 'true');
-      s.textContent=${JSON.stringify(code)};
-      (document.head || document.documentElement).appendChild(s);
-      s.remove();
-    })();
-  `;
+    return "\n    (function(){\n      const s = document.createElement('script');\n      s.setAttribute('async', 'false');\n      s.setAttribute('data-onekey-injected', 'true');\n      s.textContent=".concat(JSON.stringify(code), ";\n      (document.head || document.documentElement).appendChild(s);\n      s.remove();\n    })();\n  ");
 }
-function injectCodeWithScriptTag({ code, file, remove = true, }) {
+function injectCodeWithScriptTag(_a) {
+    var code = _a.code, file = _a.file, _b = _a.remove, remove = _b === void 0 ? true : _b;
     (function () {
-        const s = document.createElement('script');
+        var s = document.createElement('script');
         s.removeAttribute('async');
         s.removeAttribute('defer');
-        s.setAttribute('data-chargerwallet-injected', 'yes');
+        s.setAttribute('data-onekey-injected', 'yes');
         if (code) {
             s.textContent = code;
         }
@@ -36,15 +29,10 @@ function injectCodeWithScriptTag({ code, file, remove = true, }) {
     })();
 }
 function createCodeJsBridgeReceive(payloadStr) {
-    return `
-  if(window.$chargerwallet && window.$chargerwallet.jsBridge){
-    window.$chargerwallet.jsBridge.receive(${JSON.stringify(payloadStr)});
-  }
-  void 0;
-  `;
+    return "\n  if(window.$onekey && window.$onekey.jsBridge){\n    window.$onekey.jsBridge.receive(".concat(JSON.stringify(payloadStr), ");\n  }\n  void 0;\n  ");
 }
 export default {
-    injectCodeWithScriptTag,
-    createCodeWithScriptTag,
-    createCodeJsBridgeReceive,
+    injectCodeWithScriptTag: injectCodeWithScriptTag,
+    createCodeWithScriptTag: createCodeWithScriptTag,
+    createCodeJsBridgeReceive: createCodeJsBridgeReceive,
 };

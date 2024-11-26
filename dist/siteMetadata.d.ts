@@ -10,7 +10,7 @@ declare function imgExists(url: string): Promise<boolean>;
  */
 declare function getSiteMetadata(): Promise<{
     name: string;
-    icon: string | null;
+    icon: string;
 }>;
 /**
  * Extracts a name for the site from the DOM
